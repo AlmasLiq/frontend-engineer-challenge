@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+playwright-report
+test-results
+.DS_Store
+.idea
+.vscode
+.env
+.env.local
+.env.*.local
+src/shared/api/__generated__
