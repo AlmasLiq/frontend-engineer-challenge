@@ -35,7 +35,7 @@ export const Input = ({
         className={cn(
           variantClassMap[variant],
           endAdornment && 'pr-10',
-          error && (variant === 'underline' ? 'border-red-400' : 'border-red-400'),
+          error && (variant === 'underline' ? 'border-[#D23939]' : 'border-[#D23939]'),
           className,
         )}
         {...props}
@@ -46,6 +46,6 @@ export const Input = ({
         </div>
       ) : null}
     </div>
-    {error ? <span className="text-xs text-red-500">{error}</span> : null}
+    {error ? <span className="text-[12px] font-normal leading-[1.4] text-[#D23939]">{error}</span> : null}
   </label>
 );
