@@ -4,6 +4,8 @@ const envSchema = z.object({
   VITE_API_URL: z.string().url(),
 });
 
+const apiUrl: unknown = import.meta.env.VITE_API_URL ?? 'http://localhost:8080/graphql';
+
 export const env = envSchema.parse({
-  VITE_API_URL: import.meta.env.VITE_API_URL ?? 'http://localhost:8080/graphql',
+  VITE_API_URL: apiUrl,
 });

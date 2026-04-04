@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react';
+
 type FormMessageProps = {
   tone?: 'default' | 'error' | 'success';
-  children: string;
+  children: ReactNode;
 };
 
 const toneClassMap: Record<NonNullable<FormMessageProps['tone']>, string> = {

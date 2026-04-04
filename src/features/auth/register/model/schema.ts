@@ -34,7 +34,7 @@ export const validateRegisterForm = (
 
   if (!emailSchema.safeParse(values.email).success) {
     return {
-      email: 'Недопустимый адрес почты',
+      email: 'Недопустимый адрес',
     };
   }
 
@@ -47,8 +47,8 @@ export const validateRegisterForm = (
 
   if (values.password.length < 8) {
     return {
-      password: 'Минимум 8 символов.',
-      confirmPassword: 'Минимум 8 символов.',
+      password: 'Введённый пароль менее 8 символов в длину.',
+      confirmPassword: 'Введённый пароль менее 8 символов в длину.',
     };
   }
 
