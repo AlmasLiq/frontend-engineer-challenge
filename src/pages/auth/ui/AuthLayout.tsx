@@ -1,25 +1,56 @@
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
-export const AuthLayout = () => (
-  <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#fffaf2_0%,_#f2e5d7_52%,_#ead9cb_100%)]">
-    <div className="container-shell flex min-h-screen items-center justify-center py-12">
-      <div className="grid w-full max-w-5xl overflow-hidden rounded-[32px] border border-app-border bg-app-surface shadow-[0_24px_80px_rgba(47,28,18,0.12)] lg:grid-cols-[1.1fr_0.9fr]">
-        <section className="hidden bg-[linear-gradient(160deg,_#251714_0%,_#5b3125_45%,_#c15e3d_100%)] p-10 text-app-accent-foreground lg:flex lg:flex-col lg:justify-between">
-          <div className="space-y-4">
-            <p className="text-sm uppercase tracking-[0.3em] text-white/70">Orbitto Service</p>
-            <h1 className="max-w-sm text-5xl font-semibold leading-tight">
-              Frontend skeleton with production-oriented wiring.
-            </h1>
+import authHeroUrl from '@/shared/assets/illustrations/auth-hero.svg';
+import { Logo } from '@/shared/ui/logo';
+
+export const AuthLayout = () => {
+  const { pathname } = useLocation();
+  const isLoginPage = pathname === '/login' || pathname === '/';
+  const isRegisterPage = pathname === '/register';
+
+  return (
+    <main className="min-h-screen bg-white">
+      <div className="grid min-h-screen lg:grid-cols-[560px_minmax(0,1fr)]">
+        <section className="relative min-h-screen bg-white px-6 sm:px-10 lg:px-[56px]">
+          <div className="absolute left-6 top-4 z-10 sm:left-10 lg:left-[56px] lg:top-[18px]">
+            <Logo />
           </div>
-          <div className="max-w-sm space-y-3 text-sm text-white/72">
-            <p>Routing, API boundaries, forms, queries, testing, and styling are prepared.</p>
-            <p>Next step is implementing auth use cases against the selected backend fork.</p>
+
+          <div className="flex min-h-screen items-center justify-center py-28">
+            <Outlet />
           </div>
+
+          {isLoginPage || isRegisterPage ? (
+            <footer className="absolute bottom-8 left-6 right-6 border-t border-[#f0f0f0] pt-5 text-center text-[15px] leading-6 text-[#8f94a3] sm:left-10 sm:right-10 lg:left-[56px] lg:right-[56px]">
+              {isLoginPage ? (
+                <>
+                  Еще не зарегистрированы?{' '}
+                  <Link className="font-medium text-[#3a9bea]" to="/register">
+                    Регистрация
+                  </Link>
+                </>
+              ) : (
+                <>
+                  Уже есть аккаунт?{' '}
+                  <Link className="font-medium text-[#3a9bea]" to="/login">
+                    Войти
+                  </Link>
+                </>
+              )}
+            </footer>
+          ) : null}
         </section>
-        <section className="p-6 sm:p-8 lg:p-10">
-          <Outlet />
+
+        <section className="relative hidden min-h-screen overflow-hidden bg-[#eef3fb] lg:flex lg:items-center lg:justify-center">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.72)_0%,_rgba(255,255,255,0)_55%)]" />
+          <img
+            alt=""
+            aria-hidden="true"
+            className="relative z-10 h-auto w-[512px] max-w-[62%]"
+            src={authHeroUrl}
+          />
         </section>
       </div>
-    </div>
-  </main>
-);
+    </main>
+  );
+};

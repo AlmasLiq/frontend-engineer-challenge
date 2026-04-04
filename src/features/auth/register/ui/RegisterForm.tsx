@@ -1,9 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import { registerSchema, type RegisterFormValues } from '@/features/auth/register/model/schema';
 import { Button } from '@/shared/ui/button';
-import { FormMessage } from '@/shared/ui/form-message';
 import { Input } from '@/shared/ui/input';
 
 export const RegisterForm = () => {
@@ -21,28 +21,57 @@ export const RegisterForm = () => {
   });
 
   return (
-    <form className="space-y-5" onSubmit={handleSubmit(async () => undefined)}>
-      <FormMessage>Prepared for register and auto-login flow from the backend challenge.</FormMessage>
-      <Input autoComplete="email" label="Email" placeholder="name@example.com" {...register('email')} error={errors.email?.message} />
-      <Input
-        autoComplete="new-password"
-        label="Password"
-        placeholder="Create a password"
-        type="password"
-        {...register('password')}
-        error={errors.password?.message}
-      />
-      <Input
-        autoComplete="new-password"
-        label="Confirm password"
-        placeholder="Repeat your password"
-        type="password"
-        {...register('confirmPassword')}
-        error={errors.confirmPassword?.message}
-      />
-      <Button className="w-full" disabled={isSubmitting} type="submit">
-        Create account
+    <form className="w-full max-w-[400px]" onSubmit={handleSubmit(async () => undefined)}>
+      <div className="space-y-6">
+        <Input
+          autoComplete="email"
+          className="h-10 pb-1 text-[14px] leading-none"
+          hideLabel
+          placeholder="Введите e-mail"
+          variant="underline"
+          {...register('email')}
+          error={errors.email?.message}
+        />
+      </div>
+      <div className="mt-6 space-y-6">
+        <Input
+          autoComplete="new-password"
+          className="h-10 pb-1 text-[14px] leading-none"
+          hideLabel
+          placeholder="Введите пароль"
+          type="password"
+          variant="underline"
+          {...register('password')}
+          error={errors.password?.message}
+        />
+        <Input
+          autoComplete="new-password"
+          className="h-10 pb-1 text-[14px] leading-none"
+          hideLabel
+          placeholder="Повторите пароль"
+          type="password"
+          variant="underline"
+          {...register('confirmPassword')}
+          error={errors.confirmPassword?.message}
+        />
+      </div>
+      <Button
+        className="mt-5 h-12 w-full rounded-[6px] bg-[#31A0F0] px-4 text-[14px] font-medium leading-none text-white hover:bg-[#2797e7]"
+        disabled={isSubmitting}
+        type="submit"
+      >
+        Зарегистрироваться
       </Button>
+      <p className="mx-auto mt-5 max-w-[320px] text-center text-[12px] font-normal leading-[1.4] text-[#c2c6cf]">
+        Зарегистрировавшись пользователь принимает условия{' '}
+        <Link className="font-normal underline" to="#">
+          договора оферты
+        </Link>{' '}
+        и{' '}
+        <Link className="font-normal underline" to="#">
+          политики конфиденциальности
+        </Link>
+      </p>
     </form>
   );
 };

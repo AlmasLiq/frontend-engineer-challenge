@@ -1,13 +1,13 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-app: #f8f5ef;
-  --color-app-foreground: #16110f;
-  --color-app-surface: #fffdf8;
-  --color-app-muted: #6f625b;
-  --color-app-border: #ded2c5;
-  --color-app-accent: #dd6b42;
-  --color-app-accent-foreground: #fff7f1;
+  --color-app: #ffffff;
+  --color-app-foreground: #2e2f33;
+  --color-app-surface: #ffffff;
+  --color-app-muted: #8f94a3;
+  --color-app-border: #eceef2;
+  --color-app-accent: #3a9bea;
+  --color-app-accent-foreground: #ffffff;
   --font-sans: 'Inter', 'Segoe UI', sans-serif;
 }
 
@@ -25,7 +25,7 @@
   }
 
   button {
-    @apply font-inherit;
+    font: inherit;
   }
 }
 
