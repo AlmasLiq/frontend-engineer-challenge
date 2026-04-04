@@ -32,7 +32,3 @@ export const getAuthSession = (): AuthSession | null => {
 export const setAuthSession = (session: AuthSession) => {
   window.localStorage.setItem(AUTH_SESSION_STORAGE_KEY, JSON.stringify(session));
 };
-
-export const clearAuthSession = () => {
-  window.localStorage.removeItem(AUTH_SESSION_STORAGE_KEY);
-};
