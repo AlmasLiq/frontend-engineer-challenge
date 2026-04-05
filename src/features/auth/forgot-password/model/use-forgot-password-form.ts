@@ -3,13 +3,13 @@ import { useMutation } from '@tanstack/react-query';
 import { useState, type FormEvent } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { applyAuthApiErrors } from '@/features/auth/model/apply-auth-api-errors';
-import { mapAuthApiError } from '@/features/auth/model/map-auth-api-error';
 import {
   forgotPasswordFormDefaultValues,
   forgotPasswordSchema,
   type ForgotPasswordFormValues,
 } from '@/features/auth/forgot-password/model/schema';
+import { applyAuthApiErrors } from '@/features/auth/model/apply-auth-api-errors';
+import { mapAuthApiError } from '@/features/auth/model/map-auth-api-error';
 import {
   RequestPasswordResetDocument,
   type RequestPasswordResetMutationVariables,
