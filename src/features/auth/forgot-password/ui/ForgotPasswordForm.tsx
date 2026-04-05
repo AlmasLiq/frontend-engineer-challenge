@@ -18,6 +18,7 @@ export const ForgotPasswordForm = ({
         autoComplete="email"
         className="text-[14px] leading-none"
         hideLabel
+        label="E-mail"
         placeholder="Введите e-mail"
         variant="underline"
         {...register('email')}

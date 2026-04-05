@@ -67,7 +67,11 @@ export const ForgotPasswordPage = () => {
             Назад в авторизацию
           </Link>
           {forgotPasswordForm.successState.token ? (
-            <p className="pt-4 text-center text-[12px] leading-[1.4] text-[#9da3b3]">
+            <p
+              aria-live="polite"
+              className="pt-4 text-center text-[12px] leading-[1.4] text-[#9da3b3]"
+              role="status"
+            >
               Перенаправляем на форму смены пароля...
             </p>
           ) : null}

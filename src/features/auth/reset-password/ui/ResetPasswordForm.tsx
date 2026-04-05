@@ -21,6 +21,7 @@ export const ResetPasswordForm = () => {
           autoComplete="new-password"
           className="text-[14px] leading-none"
           hideLabel
+          label="Новый пароль"
           placeholder="Введите пароль"
           type="password"
           variant="underline"
@@ -32,6 +33,7 @@ export const ResetPasswordForm = () => {
           autoComplete="new-password"
           className="text-[14px] leading-none"
           hideLabel
+          label="Повторите пароль"
           placeholder="Повторите пароль"
           type="password"
           variant="underline"
@@ -49,7 +51,13 @@ export const ResetPasswordForm = () => {
       </Button>
 
       {successMessage ? (
-        <p className="pt-4 text-center text-[12px] leading-[1.4] text-[#31A0F0]">{successMessage}</p>
+        <p
+          aria-live="polite"
+          className="pt-4 text-center text-[12px] leading-[1.4] text-[#31A0F0]"
+          role="status"
+        >
+          {successMessage}
+        </p>
       ) : null}
 
       {successMessage ? (

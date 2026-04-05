@@ -19,6 +19,7 @@ export const LoginForm = () => {
         <Input
           autoComplete="email"
           hideLabel
+          label="E-mail"
           placeholder="Введите e-mail"
           variant="underline"
           {...register('email')}
@@ -27,6 +28,7 @@ export const LoginForm = () => {
         <Input
           autoComplete="current-password"
           hideLabel
+          label="Пароль"
           placeholder="Введите пароль"
           type="password"
           variant="underline"

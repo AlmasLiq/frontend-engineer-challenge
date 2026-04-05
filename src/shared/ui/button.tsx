@@ -15,7 +15,7 @@ const variants: Record<NonNullable<ButtonProps['variant']>, string> = {
 export const Button = ({ className, type = 'button', variant = 'primary', ...props }: ButtonProps) => (
   <button
     className={cn(
-      'inline-flex h-12 items-center justify-center rounded-2xl px-5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50',
+      'inline-flex h-12 items-center justify-center rounded-2xl px-5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-app-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50',
       variants[variant],
       className,
     )}

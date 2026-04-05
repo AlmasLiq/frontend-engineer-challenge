@@ -20,6 +20,7 @@ export const RegisterForm = () => {
           autoComplete="email"
           className="text-[14px] leading-none"
           hideLabel
+          label="E-mail"
           placeholder="Введите e-mail"
           variant="underline"
           {...register('email')}
@@ -32,6 +33,7 @@ export const RegisterForm = () => {
           autoComplete="new-password"
           className="text-[14px] leading-none"
           hideLabel
+          label="Пароль"
           placeholder="Введите пароль"
           type="password"
           variant="underline"
@@ -42,6 +44,7 @@ export const RegisterForm = () => {
           autoComplete="new-password"
           className="text-[14px] leading-none"
           hideLabel
+          label="Повторите пароль"
           placeholder="Повторите пароль"
           type="password"
           variant="underline"

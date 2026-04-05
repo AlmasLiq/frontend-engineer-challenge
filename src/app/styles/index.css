@@ -27,6 +27,11 @@
   button {
     font: inherit;
   }
+
+  a:focus-visible,
+  button:focus-visible {
+    @apply rounded-md outline-none ring-2 ring-app-accent/35 ring-offset-2 ring-offset-white;
+  }
 }
 
 @utility container-shell {
