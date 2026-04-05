@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { useState, type FormEvent } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSearchParams } from 'react-router-dom';
 
 import { applyAuthApiErrors } from '@/features/auth/model/apply-auth-api-errors';
 import { mapAuthApiError } from '@/features/auth/model/map-auth-api-error';
@@ -23,6 +24,7 @@ type UseResetPasswordFormResult = {
 };
 
 export const useResetPasswordForm = (): UseResetPasswordFormResult => {
+  const [searchParams] = useSearchParams();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const form = useForm<ResetPasswordFormValues>({
@@ -36,7 +38,7 @@ export const useResetPasswordForm = (): UseResetPasswordFormResult => {
     mutationFn: (variables: ResetPasswordMutationVariables) =>
       executeGraphql(ResetPasswordDocument, variables),
     onSuccess: () => {
-      setSuccessMessage('Пароль обновлён. Теперь можно войти с новым паролем.');
+      setSuccessMessage('Пароль успешно изменен.');
     },
   });
 
@@ -44,11 +46,22 @@ export const useResetPasswordForm = (): UseResetPasswordFormResult => {
     form.clearErrors();
     setSuccessMessage(null);
 
+    const email = searchParams.get('email');
+    const token = searchParams.get('token');
+
+    if (!email || !token) {
+      form.setError('newPassword', {
+        type: 'manual',
+        message: 'Ссылка для восстановления недействительна.',
+      });
+      return;
+    }
+
     try {
       await resetPasswordMutation.mutateAsync({
-        email: values.email,
+        email,
         newPassword: values.newPassword,
-        token: values.token,
+        token,
       });
     } catch (error) {
       applyAuthApiErrors(form, mapAuthApiError('resetPassword', error));

@@ -28,7 +28,7 @@ export const validateRegisterForm = (
 ): RegisterFormErrors => {
   if (options?.isEmailTaken) {
     return {
-      email: 'Данный адрес почты занят.',
+      email: 'Данный адрес уже занят.',
     };
   }
 

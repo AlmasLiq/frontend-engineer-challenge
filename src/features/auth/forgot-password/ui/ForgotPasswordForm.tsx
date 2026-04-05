@@ -1,41 +1,36 @@
-import { useForgotPasswordForm } from '@/features/auth/forgot-password/model/use-forgot-password-form';
 import { Button } from '@/shared/ui/button';
-import { FormMessage } from '@/shared/ui/form-message';
 import { Input } from '@/shared/ui/input';
 
-export const ForgotPasswordForm = () => {
-  const {
-    form: {
-      formState: { errors, isSubmitting },
-      register,
-    },
-    handleFormSubmit,
-    successState,
-  } = useForgotPasswordForm();
+import type { UseForgotPasswordFormResult } from '@/features/auth/forgot-password/model/use-forgot-password-form';
 
-  return (
-    <form className="space-y-5" onSubmit={handleFormSubmit}>
-      {errors.root?.message ? <FormMessage tone="error">{errors.root.message}</FormMessage> : null}
-      {successState ? (
-        <FormMessage tone="success">
-          <span>{successState.message}</span>
-          {successState.token ? (
-            <span className="mt-2 block break-all font-medium">Токен: {successState.token}</span>
-          ) : null}
-        </FormMessage>
-      ) : null}
+type ForgotPasswordFormProps = Pick<UseForgotPasswordFormResult, 'form' | 'handleFormSubmit'>;
 
+export const ForgotPasswordForm = ({
+  form: {
+    formState: { errors, isSubmitting },
+    register,
+  },
+  handleFormSubmit,
+}: ForgotPasswordFormProps) => (
+  <form className="w-full max-w-[400px]" onSubmit={handleFormSubmit}>
+    <div className="mb-6">
       <Input
         autoComplete="email"
-        label="Email"
-        placeholder="name@example.com"
+        className="text-[14px] leading-none"
+        hideLabel
+        placeholder="Введите e-mail"
+        variant="underline"
         {...register('email')}
         error={errors.email?.message}
       />
+    </div>
 
-      <Button className="w-full" disabled={isSubmitting} type="submit">
-        Request reset
-      </Button>
-    </form>
-  );
-};
+    <Button
+      className="h-12 w-full rounded-[6px] bg-[#DDEEFE] px-4 text-[14px] font-medium leading-none text-[#31A0F0] hover:bg-[#d5e9fd] disabled:opacity-100"
+      disabled={isSubmitting}
+      type="submit"
+    >
+      Восстановить пароль
+    </Button>
+  </form>
+);

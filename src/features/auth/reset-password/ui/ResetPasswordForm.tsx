@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import { useResetPasswordForm } from '@/features/auth/reset-password/model/use-reset-password-form';
 import { Button } from '@/shared/ui/button';
-import { FormMessage } from '@/shared/ui/form-message';
 import { Input } from '@/shared/ui/input';
 
 export const ResetPasswordForm = () => {
@@ -14,32 +15,50 @@ export const ResetPasswordForm = () => {
   } = useResetPasswordForm();
 
   return (
-    <form className="space-y-5" onSubmit={handleFormSubmit}>
-      {errors.root?.message ? <FormMessage tone="error">{errors.root.message}</FormMessage> : null}
-      {successMessage ? <FormMessage tone="success">{successMessage}</FormMessage> : null}
+    <form className="w-full max-w-[400px]" onSubmit={handleFormSubmit}>
+      <div className="space-y-6">
+        <Input
+          autoComplete="new-password"
+          className="text-[14px] leading-none"
+          hideLabel
+          placeholder="Введите пароль"
+          type="password"
+          variant="underline"
+          {...register('newPassword')}
+          error={errors.newPassword?.message}
+        />
 
-      <Input autoComplete="email" label="Email" placeholder="name@example.com" {...register('email')} error={errors.email?.message} />
-      <Input label="Token" placeholder="Paste reset token" {...register('token')} error={errors.token?.message} />
-      <Input
-        autoComplete="new-password"
-        label="New password"
-        placeholder="Enter a new password"
-        type="password"
-        {...register('newPassword')}
-        error={errors.newPassword?.message}
-      />
-      <Input
-        autoComplete="new-password"
-        label="Confirm new password"
-        placeholder="Repeat your password"
-        type="password"
-        {...register('confirmPassword')}
-        error={errors.confirmPassword?.message}
-      />
+        <Input
+          autoComplete="new-password"
+          className="text-[14px] leading-none"
+          hideLabel
+          placeholder="Повторите пароль"
+          type="password"
+          variant="underline"
+          {...register('confirmPassword')}
+          error={errors.confirmPassword?.message}
+        />
+      </div>
 
-      <Button className="w-full" disabled={isSubmitting} type="submit">
-        Update password
+      <Button
+        className="mt-6 h-12 w-full rounded-[6px] bg-[#31A0F0] px-4 text-[14px] font-medium leading-none text-white hover:bg-[#2797e7]"
+        disabled={isSubmitting}
+        type="submit"
+      >
+        Изменить пароль
       </Button>
+
+      {successMessage ? (
+        <p className="pt-4 text-center text-[12px] leading-[1.4] text-[#31A0F0]">{successMessage}</p>
+      ) : null}
+
+      {successMessage ? (
+        <div className="pt-5 text-center">
+          <Link className="text-[14px] font-medium leading-none text-[#31A0F0]" to="/login">
+            Назад в авторизацию
+          </Link>
+        </div>
+      ) : null}
     </form>
   );
 };

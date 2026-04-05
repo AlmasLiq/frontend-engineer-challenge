@@ -17,8 +17,8 @@ import {
 import { executeGraphql } from '@/shared/api/client';
 
 type ForgotPasswordSuccessState = {
-  message: string;
-  token: string | null;
+  email: string;
+  token: string;
 };
 
 type UseForgotPasswordFormResult = {
@@ -40,10 +40,20 @@ export const useForgotPasswordForm = (): UseForgotPasswordFormResult => {
   const forgotPasswordMutation = useMutation({
     mutationFn: (variables: RequestPasswordResetMutationVariables) =>
       executeGraphql(RequestPasswordResetDocument, variables),
-    onSuccess: (data) => {
+    onSuccess: (data, variables) => {
+      const token = data.requestPasswordReset.token;
+
+      if (!token) {
+        form.setError('email', {
+          message: 'Нет аккаунтов с таким e-mail',
+          type: 'server',
+        });
+        return;
+      }
+
       setSuccessState({
-        message: 'Если адрес существует, токен для сброса уже подготовлен.',
-        token: data.requestPasswordReset.token ?? null,
+        email: variables.email,
+        token,
       });
     },
   });
@@ -69,3 +79,5 @@ export const useForgotPasswordForm = (): UseForgotPasswordFormResult => {
     successState,
   };
 };
+
+export type { UseForgotPasswordFormResult };

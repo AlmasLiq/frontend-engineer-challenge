@@ -1,20 +1,18 @@
-import { Link } from 'react-router-dom';
-
 import { ResetPasswordForm } from '@/features/auth/reset-password/ui/ResetPasswordForm';
-import { AuthPageShell } from '@/pages/auth/ui/AuthPageShell';
 
 export const ResetPasswordPage = () => (
-  <AuthPageShell
-    eyebrow="Apply token"
-    title="Set a new password"
-    description="Final step of the reset flow. Connect token, email, and password mutation here."
-  >
-    <ResetPasswordForm />
-    <p className="text-sm text-app-muted">
-      Need a new token?{' '}
-      <Link className="font-medium text-app-foreground" to="/forgot-password">
-        Request password reset
-      </Link>
-    </p>
-  </AuthPageShell>
+  <div className="flex w-full max-w-[400px] flex-col">
+    <div className="space-y-4">
+      <h2 className="text-[32px] font-medium leading-[1.2] tracking-[0] text-[#2e2f33]">
+        Задайте пароль
+      </h2>
+      <p className="text-[14px] leading-[1.4] text-[#9da3b3]">
+        Напишите новый пароль, который будете использовать для входа
+      </p>
+    </div>
+
+    <div className="pt-8">
+      <ResetPasswordForm />
+    </div>
+  </div>
 );

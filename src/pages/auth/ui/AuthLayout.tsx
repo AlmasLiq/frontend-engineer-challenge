@@ -7,6 +7,24 @@ export const AuthLayout = () => {
   const { pathname } = useLocation();
   const isLoginPage = pathname === '/login' || pathname === '/';
   const isRegisterPage = pathname === '/register';
+  const isForgotPasswordPage = pathname === '/forgot-password';
+  const isResetPasswordPage = pathname === '/reset-password';
+
+  if (isForgotPasswordPage || isResetPasswordPage) {
+    return (
+      <main className="min-h-screen bg-white">
+        <section className="relative min-h-screen px-6 sm:px-10 lg:px-[56px]">
+          <div className="absolute left-6 top-4 z-10 sm:left-10 lg:left-[56px] lg:top-[18px]">
+            <Logo />
+          </div>
+
+          <div className="flex min-h-screen items-center justify-center px-4 py-20">
+            <Outlet />
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-white">

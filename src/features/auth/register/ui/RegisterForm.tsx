@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 import { useRegisterForm } from '@/features/auth/register/model/use-register-form';
 import { Button } from '@/shared/ui/button';
-import { FormMessage } from '@/shared/ui/form-message';
 import { Input } from '@/shared/ui/input';
 
 export const RegisterForm = () => {
@@ -12,22 +11,10 @@ export const RegisterForm = () => {
       register,
     },
     handleFormSubmit,
-    successMessage,
   } = useRegisterForm();
 
   return (
     <form className="w-full max-w-[400px]" onSubmit={handleFormSubmit}>
-      {errors.root?.message ? (
-        <div className="mb-4">
-          <FormMessage tone="error">{errors.root.message}</FormMessage>
-        </div>
-      ) : null}
-      {successMessage ? (
-        <div className="mb-4">
-          <FormMessage tone="success">{successMessage}</FormMessage>
-        </div>
-      ) : null}
-
       <div className="space-y-6">
         <Input
           autoComplete="email"
