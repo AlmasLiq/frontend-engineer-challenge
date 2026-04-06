@@ -10,13 +10,19 @@ export const validRegistrationData: RegistrationData = {
   password: 'Password123!',
 };
 
+const getEmailVariable = (variables: Record<string, unknown>): string => {
+  const email = variables.email;
+
+  return typeof email === 'string' ? email : validRegistrationData.email;
+};
+
 export const mockRegistrationSuccess = async (page: Page) => {
   await mockGraphqlOperations(page, [
     {
       handle: ({ variables }) =>
         graphqlSuccess({
           register: {
-            email: String(variables.email ?? validRegistrationData.email),
+            email: getEmailVariable(variables),
             id: 'user-2',
             status: 'ACTIVE',
           },
@@ -30,7 +36,7 @@ export const mockRegistrationSuccess = async (page: Page) => {
             accessToken: 'access-token',
             refreshToken: 'refresh-token',
             user: {
-              email: String(variables.email ?? validRegistrationData.email),
+              email: getEmailVariable(variables),
               id: 'user-2',
               status: 'ACTIVE',
             },

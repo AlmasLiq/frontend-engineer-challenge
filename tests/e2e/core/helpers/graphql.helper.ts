@@ -24,7 +24,7 @@ type GraphqlOperationMock = {
 const GRAPHQL_URL_PATTERN = '**/graphql';
 
 const parseGraphqlRequestBody = (route: Route): GraphqlRequestBody => {
-  const payload = route.request().postDataJSON();
+  const payload: unknown = route.request().postDataJSON();
 
   if (!payload || typeof payload !== 'object') {
     return {};

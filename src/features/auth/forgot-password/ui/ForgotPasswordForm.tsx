@@ -1,7 +1,6 @@
+import type { UseForgotPasswordFormResult } from '@/features/auth/forgot-password/model/use-forgot-password-form';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
-
-import type { UseForgotPasswordFormResult } from '@/features/auth/forgot-password/model/use-forgot-password-form';
 
 type ForgotPasswordFormProps = Pick<UseForgotPasswordFormResult, 'form' | 'handleFormSubmit'>;
 

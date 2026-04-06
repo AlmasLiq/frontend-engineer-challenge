@@ -1,5 +1,3 @@
-import { AuthUiErrorMessage } from '../../core/enums/auth-errors.enum';
-import { expect, test } from '../../core/fixtures/auth.fixture';
 import { fillLoginForm, openLoginPage, submitLoginForm } from './login.actions';
 import { expectAppPageOpened, expectLoginError } from './login.checks';
 import {
@@ -10,6 +8,8 @@ import {
   mockLoginUnknownError,
   validLoginData,
 } from './login.mocks';
+import { AuthUiErrorMessage } from '../../core/enums/auth-errors.enum';
+import { test } from '../../core/fixtures/auth.fixture';
 
 test.describe('Login', () => {
   test('Login: submit valid credentials and redirect to app', async ({ page }) => {

@@ -11,6 +11,12 @@ export const validLoginData: LoginCredentials = {
   password: 'Password123!',
 };
 
+const getEmailVariable = (variables: Record<string, unknown>): string => {
+  const email = variables.email;
+
+  return typeof email === 'string' ? email : validLoginData.email;
+};
+
 const buildLoginSuccessResponse = (email: string) =>
   graphqlSuccess({
     login: {
@@ -27,7 +33,7 @@ const buildLoginSuccessResponse = (email: string) =>
 export const mockLoginSuccess = async (page: Page) => {
   await mockGraphqlOperations(page, [
     {
-      handle: ({ variables }) => buildLoginSuccessResponse(String(variables.email ?? validLoginData.email)),
+      handle: ({ variables }) => buildLoginSuccessResponse(getEmailVariable(variables)),
       operationName: 'Login',
     },
   ]);

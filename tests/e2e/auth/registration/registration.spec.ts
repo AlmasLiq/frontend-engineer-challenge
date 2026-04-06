@@ -1,5 +1,3 @@
-import { AuthUiErrorMessage } from '../../core/enums/auth-errors.enum';
-import { test } from '../../core/fixtures/auth.fixture';
 import { fillRegistrationForm, openRegistrationPage, submitRegistrationForm } from './registration.actions';
 import {
   expectAppPageOpened,
@@ -15,6 +13,8 @@ import {
   mockRegistrationUnknownError,
   validRegistrationData,
 } from './registration.mocks';
+import { AuthUiErrorMessage } from '../../core/enums/auth-errors.enum';
+import { test } from '../../core/fixtures/auth.fixture';
 
 test.describe('Registration', () => {
   test('Registration: submit valid data, login user, and redirect to app', async ({ page }) => {
