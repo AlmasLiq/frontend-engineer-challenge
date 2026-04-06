@@ -79,7 +79,7 @@ npm run codegen
 npm run build
 npm run lint
 npm run typecheck
-npm run test
+npm run test:unit
 npm run test:e2e
 ```
 
@@ -347,4 +347,3 @@ tests/
 
 ## Итог
 
-Текущая реализация закрывает основной auth challenge не только вёрсткой, но и интеграцией с backend-контрактами, сценарной обработкой ошибок, базовой a11y и тестовым покрытием. Самые осознанные упрощения: placeholder после входа, локальная сессия без refresh-flow и e2e на mocked GraphQL вместо real API smoke.
