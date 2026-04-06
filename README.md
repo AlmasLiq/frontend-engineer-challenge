@@ -58,6 +58,7 @@ Frontend для auth-flow на основе дизайна Orbitto Service. В �
 
 ```bash
 npm install
+npm run codegen
 npm run dev
 ```
 
@@ -74,19 +75,20 @@ VITE_API_URL=http://localhost:8080/graphql
 ### Команды
 
 ```bash
+npm run codegen
 npm run build
 npm run lint
 npm run typecheck
 npm run test
 npm run test:e2e
-npm run codegen
 ```
 
 ### Как запускать
 
 1. Запустите backend.
 2. Выполните `npm install`.
-3. Выполните `npm run dev`.
+3. Выполните `npm run codegen`.
+4. Выполните `npm run dev`.
 
 ## Ссылка на backend
 
